@@ -91,7 +91,6 @@
 
 	<ItemGroup>
 	  <Folder Include="OldClasses\" />
-	  <Folder Include="Pages\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -99,28 +98,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="GamePage.xaml">
+	  <MauiXaml Update="Pages\GamePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="GamePage3.xaml">
+	  <MauiXaml Update="Pages\GamePage3.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="GetRacePage.xaml">
+	  <MauiXaml Update="Pages\GetRacePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="PlayerProfilePage.xaml">
+	  <MauiXaml Update="Pages\PlayerProfilePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SelectPlayersPage.xaml">
+	  <MauiXaml Update="Pages\SelectPlayersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SelectRacePage.xaml">
+	  <MauiXaml Update="Pages\SelectRacePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="SelectWinnerPage.xaml">
+	  <MauiXaml Update="Pages\SelectWinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="WinnerPage.xaml">
+	  <MauiXaml Update="Pages\WinnerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
