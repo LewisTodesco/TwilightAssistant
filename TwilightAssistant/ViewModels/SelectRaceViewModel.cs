@@ -46,25 +46,25 @@ namespace TwilightAssistant.ViewModels
             //Dependancy injection
             gamePlayerServices = gps;
             //Get the GamePlayers list from the GamePlayerServices GetGamePlayers method.
-            GamePlayers = gamePlayerServices.GetGamePlayers();
+            GamePlayers = gamePlayerServices.GetOfflineData();
             gameServices = gs;
         }
 
         //Create a method to be called OnAppearing to update to UI with the newly selected Races.
         public void UpdateGamePlayers()
         {
-            GamePlayers = gamePlayerServices.GetGamePlayers();
+            GamePlayers = gamePlayerServices.GetOfflineData();
         }
 
         //Pass the Id of the tapped player and naviate to the GetRace page.
         private ICommand gotoGetRaceCommand;
         public ICommand GotoGetRaceCommand => gotoGetRaceCommand ??= new Command(GotoGetRacePage);
-        public void GotoGetRacePage(object tappedPlayer)
+        public async void GotoGetRacePage(object tappedPlayer)
         {
             GamePlayer passedPlayer = (GamePlayer)tappedPlayer;
             IDictionary<string,object> passedGamePlayer = new Dictionary<string,object>();
             passedGamePlayer.Add("PassedPlayerId", passedPlayer.Id);
-            Shell.Current.GoToAsync(nameof(GetRacePage),passedGamePlayer); 
+            await Shell.Current.GoToAsync(nameof(GetRacePage),passedGamePlayer); 
         }
 
 
@@ -73,7 +73,7 @@ namespace TwilightAssistant.ViewModels
         public Game ActiveGame { get; set; }
         private ICommand gotoGamePageCommand;
         public ICommand GotoGamePageCommand => gotoGamePageCommand ??= new Command(GotoGamePage);
-        public void GotoGamePage()
+        public async void GotoGamePage()
         {
             //Check if all players have a race assigned.
             foreach (GamePlayer player in GamePlayers)
@@ -103,7 +103,7 @@ namespace TwilightAssistant.ViewModels
             //Make a Game object. If an existing object is still active (game hasnt finished), overwrite. Save this game object to the AppData directory. Set this as the current game (ActiveGame property?)
             //Can show the active game in the main screen incase the app closes? And if the Create game button is pressed, prompt to say are you sure as it will
             //overwrite the existing game.
-            Games = gameServices.GetGames();
+            Games = gameServices.GetOfflineData();
             //Remove the currently active game. Games will be made innactive on completion.
             foreach (Game game in Games)
             {
@@ -118,9 +118,7 @@ namespace TwilightAssistant.ViewModels
             //Create a new game and Add it to the list of Games. Write the list of Games to the AppData and pass the Game object to the GamePageViewModel.
             Game newGame = new Game(GamePlayers);
             Games.Add(newGame);
-            string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, "games.json");
-            var gamesjson = JsonConvert.SerializeObject(Games);
-            File.WriteAllText(targetFile, gamesjson);
+            gameServices.SaveOfflineData(Games);
 
             //Tried passing the newly created Game object, but it wasnt working great.
             //IDictionary<string, object> passedGame = new Dictionary<string, object>();
@@ -130,22 +128,22 @@ namespace TwilightAssistant.ViewModels
             switch (playercount)
             {
                 case 3:
-                    Shell.Current.GoToAsync(nameof(GamePage3));
+                    await Shell.Current.GoToAsync(nameof(GamePage3));
                     break;
                 case 4:
-                    //Shell.Current.GoToAsync(nameof(GamePage4), passedGame);
+                    //await Shell.Current.GoToAsync(nameof(GamePage4), passedGame);
                     break;
                 case 5:
-                    //Shell.Current.GoToAsync(nameof(GamePage5), passedGame);
+                    //await Shell.Current.GoToAsync(nameof(GamePage5), passedGame);
                     break;
                 case 6:
-                    //Shell.Current.GoToAsync(nameof(GamePage6), passedGame);
+                    //await Shell.Current.GoToAsync(nameof(GamePage6), passedGame);
                     break;
                 case 7:
-                    //Shell.Current.GoToAsync(nameof(GamePage7), passedGame);
+                    //await Shell.Current.GoToAsync(nameof(GamePage7), passedGame);
                     break;
                 case 8:
-                    Shell.Current.GoToAsync(nameof(GamePage));
+                    await Shell.Current.GoToAsync(nameof(GamePage));
                     break;
             }
             

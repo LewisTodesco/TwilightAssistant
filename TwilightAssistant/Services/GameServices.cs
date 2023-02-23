@@ -9,14 +9,14 @@ using TwilightAssistant.Models;
 
 namespace TwilightAssistant.Services
 {
-    public class GameServices
+    public class GameServices : IGetSaveServices<Game>
     {
         public GameServices()
         { 
         }
 
-        public ObservableCollection<Game> GetGames()
-        { 
+        public ObservableCollection<Game> GetOfflineData()
+        {
             ObservableCollection<Game> games = new ObservableCollection<Game>();
 
             try
@@ -38,5 +38,21 @@ namespace TwilightAssistant.Services
 
         }
 
+        public ObservableCollection<Game> GetOnlineData()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveOfflineData(ObservableCollection<Game> collection_to_save)
+        {
+            string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, "games.json");
+            var gamesjson = JsonConvert.SerializeObject(collection_to_save);
+            File.WriteAllText(targetFile, gamesjson);
+        }
+
+        public ObservableCollection<Game> SaveOnlineData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

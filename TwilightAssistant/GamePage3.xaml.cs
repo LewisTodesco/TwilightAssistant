@@ -243,7 +243,7 @@ public partial class GamePage3 : ContentPage
         timer2.Stop();
 
         
-        Games = gameServices.GetGames();
+        Games = gameServices.GetOfflineData();
         
 
         //Update all GamePlayers times in the Active Game

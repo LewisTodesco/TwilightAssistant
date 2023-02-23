@@ -30,7 +30,7 @@ namespace TwilightAssistant.ViewModels
             PlayerProfiles = playerProfileServices.GetOfflineData();
             //Use the Game services to get the games from memory.
             gameServices = gs;
-            Games = gameServices.GetGames();
+            Games = gameServices.GetOfflineData();
 
             ActiveGames = new ObservableCollection<Game>();
             //Distinguish between active and finished games incase the app crashes, closes etc., or game is played over two sessions, and you want to continue.
@@ -143,7 +143,7 @@ namespace TwilightAssistant.ViewModels
         public void UpdateMainPage()
         {
             PlayerProfiles = playerProfileServices.GetOfflineData();
-            Games = gameServices.GetGames();
+            Games = gameServices.GetOfflineData();
 
             ActiveGames = new ObservableCollection<Game>();
             //Distinguish between active and finished games incase the app crashes, closes etc., or game is played over two sessions, and you want to continue.

@@ -69,17 +69,21 @@ namespace TwilightAssistant.ViewModels
             }
         }
 
+        PlayerProfileServices playerProfileServices;
+        GameServices gameServices;
         public ObservableCollection<PlayerProfile> PlayerProfiles { get; set; }
-        public SelectWinnerViewModel(PlayerProfileServices pps)
+        public SelectWinnerViewModel(PlayerProfileServices pps, GameServices gs)
         {
-            PlayerProfiles = pps.GetOfflineData();
+            playerProfileServices = pps;
+            PlayerProfiles = playerProfileServices.GetOfflineData();
+            gameServices = gs;
         }
 
         //Assign the winner and update all players stats (will need a list of PlayerProfiles).
         //Make a GameStats object from each GamePlayer, then call the UpdateStats method from the PlayerProfiles with matching Id's.
         private ICommand assignWinnerCommand;
         public ICommand AssignWinnerCommand => assignWinnerCommand ??= new Command(AssignWinner);
-        public void AssignWinner(object winner)
+        public async void AssignWinner(object winner)
         {
             //PlayerProfileServices pps = new PlayerProfileServices();
             //PlayerProfiles = pps.GetPlayerProfiles();
@@ -104,29 +108,25 @@ namespace TwilightAssistant.ViewModels
                 }
             }
 
-            string targetFilePlayerProfiles = Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json");
-            string targetFileGames = Path.Combine(FileSystem.Current.AppDataDirectory, "games.json");
+            playerProfileServices.SaveOfflineData(PlayerProfiles);
+            gameServices.SaveOfflineData(Games);
 
-            var playerprofilesjson = JsonConvert.SerializeObject(PlayerProfiles);
-            var gamesjson = JsonConvert.SerializeObject(Games);
+            Dictionary<string, object> passedwinner = new Dictionary<string, object>
+            {
+                { "Winner", winningPlayer }
+            };
 
-            File.WriteAllText(targetFilePlayerProfiles, playerprofilesjson);
-            File.WriteAllText(targetFileGames, gamesjson);
-
-            Dictionary<string, object> passedwinner = new Dictionary<string, object>();
-            passedwinner.Add("Winner", winningPlayer);
-
-            Shell.Current.GoToAsync(nameof(WinnerPage), passedwinner);
-            //Navigate to an animation page? XX IS THE WINNER with a spin and a turn etc.
+            await Shell.Current.GoToAsync(nameof(WinnerPage), passedwinner);
+           
         }
 
         //For a back button in case it was missclicked.
         private ICommand backCommand;
         public ICommand BackCommand => backCommand ??= new Command(Back);
 
-        public void Back()
+        public async void Back()
         {
-            Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");
         }
 
     }

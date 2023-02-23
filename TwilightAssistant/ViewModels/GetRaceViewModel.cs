@@ -43,7 +43,7 @@ namespace TwilightAssistant.ViewModels
             //Instantiate the Services object
             gamePlayerServices = gps;
             //Call method to get GamePlayers
-            GamePlayers = gamePlayerServices.GetGamePlayers();
+            GamePlayers = gamePlayerServices.GetOfflineData();
             raceServices = races;
             Races = raceServices.GetRaces();
         }
@@ -51,7 +51,7 @@ namespace TwilightAssistant.ViewModels
         //Assign Race Command
         private ICommand assignRaceCommand;
         public ICommand AssignRaceCommand => assignRaceCommand ??= new Command(AssignRace);
-        public void AssignRace(object tappedRace)
+        public async void AssignRace(object tappedRace)
         {
             //Cast object into Race
             Race race = (Race)tappedRace;
@@ -74,13 +74,10 @@ namespace TwilightAssistant.ViewModels
             }
 
             //Update the GamePlayers JSON file in the cashe
-            string fileName = "gameplayers.json";
-            string targetFile = Path.Combine(FileSystem.Current.CacheDirectory, fileName);
-            var gameplayersjson = JsonConvert.SerializeObject(GamePlayers);
-            File.WriteAllText(targetFile, gameplayersjson);
+            gamePlayerServices.SaveOfflineData(GamePlayers);
 
             //Navigate back
-            Shell.Current.GoToAsync(nameof(SelectRacePage));
+            await Shell.Current.GoToAsync(nameof(SelectRacePage));
 
         }
 

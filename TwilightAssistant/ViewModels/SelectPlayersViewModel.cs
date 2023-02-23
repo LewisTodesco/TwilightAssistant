@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using TwilightAssistant.Models;
+using TwilightAssistant.Services;
 
 namespace TwilightAssistant.ViewModels
 {
@@ -43,9 +44,10 @@ namespace TwilightAssistant.ViewModels
 
         }
 
-        public SelectPlayersViewModel()
+        GamePlayerServices gamePlayerServices;
+        public SelectPlayersViewModel(GamePlayerServices gps)
         {
-
+            gamePlayerServices = gps;
         }
 
         //Create an ObservableCollection to store the selected profiles.
@@ -82,7 +84,7 @@ namespace TwilightAssistant.ViewModels
         private ICommand gotoSelectRaceCommand;
         public ICommand GotoSelectRaceCommand => gotoSelectRaceCommand ??= new Command(GotoSelectRace);
 
-        public void GotoSelectRace()
+        public async void GotoSelectRace()
         {
             //If no profiles are selected, we dont want the button to do anything.
             if (SelectedProfiles.Count == 0 || SelectedProfiles.Count == 1 || SelectedProfiles.Count == 2)
@@ -101,13 +103,10 @@ namespace TwilightAssistant.ViewModels
             }
 
             //Write the GamePlayers list to cashe
-            var gamePlayersJson = JsonConvert.SerializeObject(GamePlayers);
-            string fileName = "gameplayers.json";
-            string targetFile = Path.Combine(FileSystem.Current.CacheDirectory, fileName);
-            File.WriteAllText(targetFile, gamePlayersJson);
+            gamePlayerServices.SaveOfflineData(GamePlayers);
 
             //Shell navigate to the select race page
-            Shell.Current.GoToAsync(nameof(SelectRacePage));
+            await Shell.Current.GoToAsync(nameof(SelectRacePage));
         }
 
         

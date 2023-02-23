@@ -29,16 +29,16 @@ namespace TwilightAssistant.ViewModels
         //Button to go home
         private ICommand homeCommand;
         public ICommand HomeCommand => homeCommand ??= new Command(Home);
-        public void Home()
+        public async void Home()
         {
-            var navigationStack = Shell.Current.Navigation.NavigationStack;
+            //var navigationStack = Shell.Current.Navigation.NavigationStack;
 
             //for(int i = navigationStack.Count -1; i>=1; i--)
             //{
             //    Shell.Current.Navigation.RemovePage(navigationStack[i]);
             //}
             
-            Shell.Current.Navigation.PopToRootAsync();
+            await Shell.Current.Navigation.PopToRootAsync();
             //Shell.Current.GoToAsync("../../../../../../..");
         }
 
