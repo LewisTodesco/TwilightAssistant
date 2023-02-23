@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TwilightAssistant.SelectPlayersPage"
+             Title="SelectPlayersPage"
+             xmlns:viewmodels="clr-namespace:TwilightAssistant.ViewModels"
+             xmlns:models="clr-namespace:TwilightAssistant.Models"
+             x:DataType="viewmodels:SelectPlayersViewModel">
+    
+    
+    <Grid RowDefinitions="50,*,50">
+        <Label Grid.Row="0" Text="SELECT PLAYERS" FontSize="28" CharacterSpacing="2"/>
+
+        <CollectionView ItemsSource="{Binding PlayerProfiles}"
+                        SelectionMode="Multiple"
+                        Grid.Row="1">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:PlayerProfile">
+                    <Frame Padding="10" Margin="10" HeightRequest="60">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SelectPlayersViewModel}}, Path=SelectedPlayersCommand}"
+                                                  CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                        <Grid ColumnDefinitions="*,*">
+                            <Label Grid.Column="0" Text="{Binding Name}" FontSize="28" HorizontalTextAlignment="Center"/>
+                            <Image Grid.Column="1" Source="{Binding LastRacePlayed}" HeightRequest="50" Aspect="AspectFit"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="2" Text="CONFIRM PLAYERS" Command="{Binding GotoSelectRaceCommand}"/>
+
+    </Grid>
+    
+</ContentPage>

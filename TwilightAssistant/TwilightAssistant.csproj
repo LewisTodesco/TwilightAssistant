@@ -1,0 +1,128 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType Condition="'$(TargetFramework)' != 'net6.0'">Exe</OutputType>
+		<RootNamespace>TwilightAssistant</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>TwilightAssistant</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.twilightassistant</ApplicationId>
+		<ApplicationIdGuid>8B8244DA-52B3-4832-B527-1B75F43B4F13</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\arborec.png" />
+	  <None Remove="Resources\Images\argentfactionsymbol.png" />
+	  <None Remove="Resources\Images\barony.png" />
+	  <None Remove="Resources\Images\cabalfactionsymbol.png" />
+	  <None Remove="Resources\Images\construction.png" />
+	  <None Remove="Resources\Images\council.png" />
+	  <None Remove="Resources\Images\diplomacy.png" />
+	  <None Remove="Resources\Images\empyreanfactionsymbol.png" />
+	  <None Remove="Resources\Images\ghosts.png" />
+	  <None Remove="Resources\Images\hacan.png" />
+	  <None Remove="Resources\Images\imperial.png" />
+	  <None Remove="Resources\Images\jolnar.png" />
+	  <None Remove="Resources\Images\l1z1x.png" />
+	  <None Remove="Resources\Images\leadership.png" />
+	  <None Remove="Resources\Images\mahactfactionsymbol.png" />
+	  <None Remove="Resources\Images\mentak.png" />
+	  <None Remove="Resources\Images\muaat.png" />
+	  <None Remove="Resources\Images\naalu.png" />
+	  <None Remove="Resources\Images\naazrokhafactionsymbol.png" />
+	  <None Remove="Resources\Images\nekro.png" />
+	  <None Remove="Resources\Images\nomadfactionsheet.png" />
+	  <None Remove="Resources\Images\pausebutton.png" />
+	  <None Remove="Resources\Images\playbutton.png" />
+	  <None Remove="Resources\Images\politics.png" />
+	  <None Remove="Resources\Images\saar.png" />
+	  <None Remove="Resources\Images\sardakk.png" />
+	  <None Remove="Resources\Images\selectrace.png" />
+	  <None Remove="Resources\Images\sol.png" />
+	  <None Remove="Resources\Images\technology.png" />
+	  <None Remove="Resources\Images\tiassistant_logo_large.png" />
+	  <None Remove="Resources\Images\trade.png" />
+	  <None Remove="Resources\Images\ulfactionsymbol.png" />
+	  <None Remove="Resources\Images\unknown.png" />
+	  <None Remove="Resources\Images\warfare.png" />
+	  <None Remove="Resources\Images\winnu.png" />
+	  <None Remove="Resources\Images\xxcha.png" />
+	  <None Remove="Resources\Images\yin.png" />
+	  <None Remove="Resources\Images\yssaril.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="OldClasses\" />
+	  <Folder Include="Pages\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="GamePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="GamePage3.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="GetRacePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="PlayerProfilePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SelectPlayersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SelectRacePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="SelectWinnerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="WinnerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TwilightAssistant.GamePage3"
+             Title="GamePage3"
+             xmlns:viewmodels="clr-namespace:TwilightAssistant.ViewModels"
+             xmlns:models="clr-namespace:TwilightAssistant.Models"
+             x:DataType="viewmodels:GamePageViewModel">
+    
+    <Grid RowDefinitions="70,*,100,60" ColumnDefinitions="75*,25*">
+        
+        <Label Text="TWILIGHT IMPERIUM" FontSize="50" CharacterSpacing="2" Grid.Row="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10" Grid.ColumnSpan="2">
+            <Frame Margin="5" x:Name="playerFrame0">
+                <Grid ColumnDefinitions="*,*,*,*,*,Auto,Auto">
+                    <Label Text="{Binding ActiveGame.GamePlayers[0].Name}" Grid.Column="0" FontSize="30" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
+                    <Label Text="{Binding ActiveGame.GamePlayers[0].Race}" Grid.Column="1" FontSize="24" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
+                    <Image Source="{Binding ActiveGame.GamePlayers[0].RaceLogo}" Grid.Column="2" HeightRequest="80"></Image>
+                    <ImageButton Source="{Binding ActiveGame.GamePlayers[0].StrategyCard.StrategyLogo}" HeightRequest="60" Grid.Column="3" Margin="15"></ImageButton>
+                    <Label x:Name="playerTime0" Grid.Column="4" FontSize="34" HorizontalOptions="Center" VerticalTextAlignment="Center"></Label>
+                    <ImageButton x:Name="StartBtn0" Clicked="StartTime" Source="playbutton.png" Aspect="AspectFill" HeightRequest="60" Grid.Column="5" Margin="15"></ImageButton>
+                    <ImageButton x:Name="StopBtn0" Clicked="StopTime" Source="pausebutton.png" Aspect="AspectFill" HeightRequest="60" Grid.Column="6" Margin="15"></ImageButton>
+                </Grid>
+            </Frame>
+            <Frame Margin="5" x:Name="playerFrame1">
+                <Grid ColumnDefinitions="*,*,*,*,*,Auto,Auto">
+                    <Label Text="{Binding GamePlayers[1].Name}" Grid.Column="0" FontSize="30" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
+                    <Label Text="{Binding GamePlayers[1].Race}" Grid.Column="1" FontSize="24" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
+                    <Image Source="{Binding GamePlayers[1].RaceLogo}" HeightRequest="80" Grid.Column="2"></Image>
+                    <ImageButton Source="{Binding GamePlayers[1].StrategyCard.StrategyLogo}" HeightRequest="60" Grid.Column="3" Margin="15"></ImageButton>
+                    <Label x:Name="playerTime1" Grid.Column="4" FontSize="32" HorizontalOptions="Center" VerticalTextAlignment="Center"></Label>
+                    <ImageButton x:Name="StartBtn1" Clicked="StartTime" Source="playbutton.png" Aspect="AspectFill" HeightRequest="60" Grid.Column="5" Margin="15"></ImageButton>
+                    <ImageButton x:Name="StopBtn1" Clicked="StopTime" Source="pausebutton.png" Aspect="AspectFill" HeightRequest="60" Grid.Column="6" Margin="15"></ImageButton>
+                </Grid>
+            </Frame>
+            <Frame Margin="5" x:Name="playerFrame2">
+                <Grid ColumnDefinitions="*,*,*,*,*,Auto,Auto">
+                    <Label Text="{Binding GamePlayers[2].Name}" Grid.Column="0" FontSize="30" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
+                    <Label Text="{Binding GamePlayers[2].Race}" Grid.Column="1" FontSize="24" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
+                    <Image Source="{Binding GamePlayers[2].RaceLogo}" Grid.Column="2" HeightRequest="80"></Image>
+                    <ImageButton Source="{Binding GamePlayers[2].StrategyCard.StrategyLogo}" HeightRequest="60" Grid.Column="3" Margin="15"></ImageButton>
+                    <Label x:Name="playerTime2" Grid.Column="4" FontSize="32" HorizontalOptions="Center" VerticalTextAlignment="Center"></Label>
+                    <ImageButton x:Name="StartBtn2" Clicked="StartTime" Source="playbutton.png" Aspect="AspectFill" HeightRequest="60" Grid.Column="5" Margin="15"></ImageButton>
+                    <ImageButton x:Name="StopBtn2" Clicked="StopTime" Source="pausebutton.png" Aspect="AspectFill" HeightRequest="60" Grid.Column="6" Margin="15"></ImageButton>
+                </Grid>
+            </Frame>
+        </VerticalStackLayout>
+
+
+        <Button Grid.Row="3" Grid.Column="1" Clicked="EndGame" Text="END GAME" CharacterSpacing="2" HorizontalOptions="Center"></Button>
+       
+    </Grid>
+</ContentPage>

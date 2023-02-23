@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TwilightAssistant.GamePage"
+             Title="GamePage"
+             xmlns:Models="clr-namespace:TwilightAssistant.Models"
+             xmlns:ViewModels="clr-namespace:TwilightAssistant.ViewModels"
+             x:DataType="ViewModels:GamePageViewModel">
+
+    
+    
+    <Grid RowDefinitions="Auto,*" RowSpacing="20">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+                <Button
+                x:Name="StartBtn0"
+                Text="START BUTTON"
+                Clicked="StartTime"
+                HorizontalOptions="Center"/>
+
+                <Button
+                x:Name="StopBtn0"
+                Text="STOP BUTTON"
+                Clicked="StopTime"
+                HorizontalOptions="Center"/>
+
+                <Label x:Name="playerTime0"
+                   HorizontalOptions="Center"/>
+
+                <Label x:Name="player1"
+                   HorizontalOptions="Center"/>
+
+                <Button
+                x:Name="StartBtn1"
+                Text="START BUTTON2"
+                Clicked="StartTime"
+                HorizontalOptions="Center"/>
+
+                <Button
+                x:Name="StopBtn1"
+                Text="STOP BUTTON2"
+                Clicked="StopTime"
+                HorizontalOptions="Center"/>
+
+                <Label x:Name="playerTime1"
+                   HorizontalOptions="Center"/>
+
+                <Button
+                x:Name="EndGameBtn"
+                Text="END GAME"
+                Clicked="EndGame"
+                HorizontalOptions="Center"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding GamePlayers}"
+                        SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:GamePlayer">
+                    <Frame Padding="10" HeightRequest="50">
+                        <Grid ColumnDefinitions="*,*,*,*,*">
+                            <Label Text="{Binding Name}" Grid.Column="0"/>
+                            <Label Text="{Binding Race}" Grid.Column="1"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+
+</ContentPage>

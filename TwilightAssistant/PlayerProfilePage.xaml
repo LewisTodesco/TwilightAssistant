@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TwilightAssistant.PlayerProfilePage"
+             Title="PlayerProfilePage"
+             xmlns:ViewModels="clr-namespace:TwilightAssistant.ViewModels"
+             xmlns:Models="clr-namespace:TwilightAssistant.Models"
+             x:DataType="ViewModels:PlayerProfileViewModel">
+
+    <Grid RowDefinitions="100,60,60,60,*" ColumnDefinitions="*,*" Padding="10">
+
+        <Label Text="{Binding Profile.Name}" Grid.Row="0" FontSize="38" CharacterSpacing="2" HorizontalTextAlignment="Center" Grid.ColumnSpan="2" VerticalTextAlignment="Center" TextTransform="Uppercase"/>
+
+        <Label Text="GAMES PLAYED" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="28"></Label>
+        <Label Text="{Binding Profile.GamesPlayed}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="28"/>
+
+        <Label Text="GAMES WON" Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="28"></Label>
+        <Label Text="{Binding Profile.Wins}" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="28"/>
+        
+        <Label Text="GAME HISTORY" Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="28" Grid.ColumnSpan="2"></Label>
+        <CollectionView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Profile.GameHistory}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:GameStats">
+                    <Frame Padding="10" HeightRequest="70" BorderColor="{Binding WinLossColour}" Margin="8">
+                        <Grid ColumnDefinitions="*,*,*,*">
+                            <Label Text="{Binding GameDate}" Grid.Column="0" FontSize="28" CharacterSpacing="2" HorizontalTextAlignment="Start"/>
+                            <Label Text="{Binding RacePlayed}" Grid.Column="1" FontSize="28" CharacterSpacing="2" HorizontalTextAlignment="Start"/>
+                            <!--<Image Source="{Binding RaceLogo}" Grid.Column="2" />-->
+                            <Label Text="{Binding PlayTime}" Grid.Column="3" FontSize="28" CharacterSpacing="2" HorizontalTextAlignment="Start"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    
+</ContentPage>
