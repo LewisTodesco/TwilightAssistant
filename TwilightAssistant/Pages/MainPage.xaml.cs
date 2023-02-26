@@ -23,7 +23,7 @@ public partial class MainPage : ContentPage
         //Re-assign the binding context to a MainPageViewModel object.
         MainPageViewModel mainPageViewModel = (MainPageViewModel)BindingContext;
         //Update the information displayed on the main page.
-        mainPageViewModel.UpdateMainPage();
+        mainPageViewModel.UpdateMainPage(Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json"), Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
         //Initialize the page
         InitializeComponent();
     }

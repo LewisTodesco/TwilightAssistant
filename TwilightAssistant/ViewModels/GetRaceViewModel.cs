@@ -9,6 +9,7 @@ using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
 using TwilightAssistant.Pages;
+using Microsoft.Maui.Storage;
 
 namespace TwilightAssistant.ViewModels
 {
@@ -44,7 +45,7 @@ namespace TwilightAssistant.ViewModels
             //Instantiate the Services object
             gamePlayerServices = gps;
             //Call method to get GamePlayers
-            GamePlayers = gamePlayerServices.GetOfflineData();
+            GamePlayers = gamePlayerServices.GetOfflineData(Path.Combine(FileSystem.Current.CacheDirectory, "gameplayers.json"));
             raceServices = races;
             Races = raceServices.GetRaces();
         }

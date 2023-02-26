@@ -47,14 +47,14 @@ namespace TwilightAssistant.ViewModels
             //Dependancy injection
             gamePlayerServices = gps;
             //Get the GamePlayers list from the GamePlayerServices GetGamePlayers method.
-            GamePlayers = gamePlayerServices.GetOfflineData();
+            //GamePlayers = gamePlayerServices.GetOfflineData(Path.Combine(FileSystem.Current.CacheDirectory, "gameplayers.json"));
             gameServices = gs;
         }
 
         //Create a method to be called OnAppearing to update to UI with the newly selected Races.
-        public void UpdateGamePlayers()
+        public void UpdateGamePlayers(string targetFile)
         {
-            GamePlayers = gamePlayerServices.GetOfflineData();
+            GamePlayers = gamePlayerServices.GetOfflineData(targetFile);
         }
 
         //Pass the Id of the tapped player and naviate to the GetRace page.
@@ -104,7 +104,7 @@ namespace TwilightAssistant.ViewModels
             //Make a Game object. If an existing object is still active (game hasnt finished), overwrite. Save this game object to the AppData directory. Set this as the current game (ActiveGame property?)
             //Can show the active game in the main screen incase the app closes? And if the Create game button is pressed, prompt to say are you sure as it will
             //overwrite the existing game.
-            Games = gameServices.GetOfflineData();
+            Games = gameServices.GetOfflineData(Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
             //Remove the currently active game. Games will be made innactive on completion.
             foreach (Game game in Games)
             {

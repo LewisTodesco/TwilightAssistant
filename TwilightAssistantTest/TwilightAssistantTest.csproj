@@ -26,4 +26,8 @@
     <ProjectReference Include="..\TwilightAssistant\TwilightAssistant.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="JsonTestFiles\" />
+  </ItemGroup>
+
 </Project>

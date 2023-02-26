@@ -28,9 +28,15 @@ namespace TwilightAssistant.ViewModels
         {
             //Use the PlayerProfile services to get the playerprofiles from memory
             playerProfileServices = pps;
+
+            /*
             PlayerProfiles = playerProfileServices.GetOfflineData();
+            */
+
             //Use the Game services to get the games from memory.
             gameServices = gs;
+
+            /*
             Games = gameServices.GetOfflineData();
 
             ActiveGames = new ObservableCollection<Game>();
@@ -40,6 +46,7 @@ namespace TwilightAssistant.ViewModels
                 if (game.IsActive)
                     ActiveGames.Add(game);
             }
+            */
 
         }
 
@@ -140,11 +147,11 @@ namespace TwilightAssistant.ViewModels
             }
         }
 
-        //Update the player profiles when navigated to.
-        public void UpdateMainPage()
+        //Load all data when the page appears.
+        public void UpdateMainPage(string targetFileProfiles, string targetFileGames)
         {
-            PlayerProfiles = playerProfileServices.GetOfflineData();
-            Games = gameServices.GetOfflineData();
+            PlayerProfiles = playerProfileServices.GetOfflineData(targetFileProfiles);
+            Games = gameServices.GetOfflineData(targetFileGames);
 
             ActiveGames = new ObservableCollection<Game>();
             //Distinguish between active and finished games incase the app crashes, closes etc., or game is played over two sessions, and you want to continue.

@@ -41,7 +41,7 @@ namespace TwilightAssistant.ViewModels
         public GamePageViewModel(GameServices gs)
         {
             gameServices = gs;
-            ObservableCollection<Game> Games = gameServices.GetOfflineData();
+            ObservableCollection<Game> Games = gameServices.GetOfflineData(Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
             //Set NewGame as the Active game
             foreach (Game game in Games)
             {

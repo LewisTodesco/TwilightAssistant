@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TwilightAssistant.Models;
 using Newtonsoft.Json;
+using Microsoft.Maui.ApplicationModel;
 
 namespace TwilightAssistant.Services
 {
@@ -18,17 +19,19 @@ namespace TwilightAssistant.Services
         
         }
 
-        public ObservableCollection<PlayerProfile> GetOfflineData()
+        public ObservableCollection<PlayerProfile> GetOfflineData(string targetFile)
         {
             ObservableCollection<PlayerProfile> playerProfiles = new ObservableCollection<PlayerProfile>();
 
             try
             {
                 //IsBusy = true;
-
+                /*
                 //Get the file location from the AppDataDirectory
                 string fileName = "playerprofiles.json";
                 string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+                */
+
                 //Generate read the json file
                 var playerprofilesjson = File.ReadAllText(targetFile);
                 //Deserialise the json file and allocate it to the PlayerProfiles observable collection
@@ -39,8 +42,10 @@ namespace TwilightAssistant.Services
             //If no file exists (First time opening), catch the exeption and make a null file.
             catch (FileNotFoundException)
             {
+                /*
                 string fileName = "playerprofiles.json";
                 string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+                */
                 var playerprofilesjson = JsonConvert.SerializeObject(playerProfiles);
                 File.WriteAllText(targetFile, playerprofilesjson);
                 return playerProfiles;

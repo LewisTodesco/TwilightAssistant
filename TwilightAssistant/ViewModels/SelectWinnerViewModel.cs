@@ -70,6 +70,8 @@ namespace TwilightAssistant.ViewModels
             }
         }
 
+        public string TargetFile { get; set; }
+
         PlayerProfileServices playerProfileServices;
         GameServices gameServices;
         public ObservableCollection<PlayerProfile> PlayerProfiles { get; set; }
@@ -94,7 +96,7 @@ namespace TwilightAssistant.ViewModels
             //Put in place to stop the method being called when run from tests.
             if (PlayerProfiles.Count == 0)
             {
-                PlayerProfiles = playerProfileServices.GetOfflineData();
+                PlayerProfiles = playerProfileServices.GetOfflineData(Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json"));
             }
             
             GamePlayer winningPlayer = (GamePlayer)winner;
@@ -116,6 +118,9 @@ namespace TwilightAssistant.ViewModels
                     }
                 }
             }
+
+            //De-activate the game so it doesnt get overwritten
+            Games[Index].IsActive = false;
 
             //Put in place to stop tests overwriting the AppData JSON files and errors with Shell Navigation.
             if (PlayerProfiles[0].Id != "METHOD CALLED FROM TEST")
