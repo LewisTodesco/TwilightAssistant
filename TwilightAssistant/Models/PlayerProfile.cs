@@ -20,14 +20,14 @@ namespace TwilightAssistant.Models
                 else return null;
             } 
         }
-        public string GamesPlayed 
+        public int GamesPlayed 
         {
             get //Calculate number of games using the List of game stats.
             {
-                return GameHistory.Count.ToString();
+                return GameHistory.Count;
             }
         }
-        public string Wins 
+        public int Wins 
         { 
             get //Calculate number of wins using the List of game stats.
             {
@@ -39,7 +39,7 @@ namespace TwilightAssistant.Models
                         wins++;
                     }
                 }
-                return wins.ToString();
+                return wins;
             }
             //set { } - Doesnt need to be settable as the property depends on the List of GameStats.
         }

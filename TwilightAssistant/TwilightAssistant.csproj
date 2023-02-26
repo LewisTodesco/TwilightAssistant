@@ -98,7 +98,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\GamePage4.xaml.cs">
+	    <DependentUpon>GamePage4.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\GamePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\GamePage4.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\GamePage3.xaml">

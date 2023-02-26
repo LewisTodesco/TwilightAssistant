@@ -1,6 +1,6 @@
 using TwilightAssistant.ViewModels;
 
-namespace TwilightAssistant;
+namespace TwilightAssistant.Pages;
 
 public partial class SelectRacePage : ContentPage
 {

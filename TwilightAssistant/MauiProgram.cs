@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TwilightAssistant.Services;
 using TwilightAssistant.ViewModels;
+using TwilightAssistant.Pages;
 
 namespace TwilightAssistant;
 

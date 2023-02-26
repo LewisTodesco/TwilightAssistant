@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
+using TwilightAssistant.Pages;
 
 namespace TwilightAssistant.ViewModels
 {

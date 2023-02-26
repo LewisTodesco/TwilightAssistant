@@ -1,4 +1,6 @@
-﻿namespace TwilightAssistant;
+﻿using TwilightAssistant.Pages;
+
+namespace TwilightAssistant;
 
 public partial class AppShell : Shell
 {

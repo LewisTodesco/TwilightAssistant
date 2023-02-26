@@ -2,7 +2,7 @@
 using TwilightAssistant.ViewModels;
 using Newtonsoft.Json;
 
-namespace TwilightAssistant;
+namespace TwilightAssistant.Pages;
 
 public partial class MainPage : ContentPage
 {

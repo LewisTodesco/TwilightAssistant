@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
+using TwilightAssistant.Pages;
 
 namespace TwilightAssistant.ViewModels
 {
@@ -75,7 +76,12 @@ namespace TwilightAssistant.ViewModels
         public SelectWinnerViewModel(PlayerProfileServices pps, GameServices gs)
         {
             playerProfileServices = pps;
-            PlayerProfiles = playerProfileServices.GetOfflineData();
+
+            //Removed from the constuctor as the unit tests couldnt perform the GetOfflineData due to assembly reference errors.
+            //In actuality it didnt need to be called during the constructor, the data is only needed when a player is selected in the
+            //AssignWinner method.
+            PlayerProfiles = new ObservableCollection<PlayerProfile>();
+            
             gameServices = gs;
         }
 
@@ -85,9 +91,12 @@ namespace TwilightAssistant.ViewModels
         public ICommand AssignWinnerCommand => assignWinnerCommand ??= new Command(AssignWinner);
         public async void AssignWinner(object winner)
         {
-            //PlayerProfileServices pps = new PlayerProfileServices();
-            //PlayerProfiles = pps.GetPlayerProfiles();
-
+            //Put in place to stop the method being called when run from tests.
+            if (PlayerProfiles.Count == 0)
+            {
+                PlayerProfiles = playerProfileServices.GetOfflineData();
+            }
+            
             GamePlayer winningPlayer = (GamePlayer)winner;
             string winningID = Games[Index].GamePlayers[Games[Index].GamePlayers.IndexOf(winningPlayer)].Id;
 
@@ -108,16 +117,20 @@ namespace TwilightAssistant.ViewModels
                 }
             }
 
-            playerProfileServices.SaveOfflineData(PlayerProfiles);
-            gameServices.SaveOfflineData(Games);
-
-            Dictionary<string, object> passedwinner = new Dictionary<string, object>
+            //Put in place to stop tests overwriting the AppData JSON files and errors with Shell Navigation.
+            if (PlayerProfiles[0].Id != "METHOD CALLED FROM TEST")
             {
-                { "Winner", winningPlayer }
-            };
+                playerProfileServices.SaveOfflineData(PlayerProfiles);
+                gameServices.SaveOfflineData(Games);
 
-            await Shell.Current.GoToAsync(nameof(WinnerPage), passedwinner);
-           
+                Dictionary<string, object> passedwinner = new Dictionary<string, object>
+                {
+                    { "Winner", winningPlayer }
+                };
+
+                await Shell.Current.GoToAsync(nameof(WinnerPage), passedwinner);
+            }
+            
         }
 
         //For a back button in case it was missclicked.

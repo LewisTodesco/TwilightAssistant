@@ -8,7 +8,7 @@ using System.Security;
 
 namespace TwilightAssistant.Pages;
 
-public partial class GamePage3 : ContentPage
+public partial class GamePage4 : ContentPage
 {
     //Create all timers
     public IDispatcherTimer timer0;
@@ -45,7 +45,7 @@ public partial class GamePage3 : ContentPage
     public Game ActiveGame { get; set; }
 
     GameServices gameServices;
-    public GamePage3(GamePageViewModel gpvm, GameServices gs)
+    public GamePage4(GamePageViewModel gpvm, GameServices gs)
     {
         //ViewModel
         BindingContext = gpvm; //Set the binding context to the view model so we can pull in our List<GamePlayer> GamePlayers.
@@ -235,7 +235,7 @@ public partial class GamePage3 : ContentPage
 
     public int Index { get; set; }
     //Method to stop and record the game state.
-    private async void EndGame(object sender, EventArgs e)
+    private void EndGame(object sender, EventArgs e)
     {
         //End all the timers.
         timer0.Stop();
@@ -262,7 +262,7 @@ public partial class GamePage3 : ContentPage
         passedGames.Add("Games",Games);
         passedGames.Add("Index", Index);
         passedGames.Add("GamePlayers", Games[Index].GamePlayers);
-        await Shell.Current.GoToAsync(nameof(SelectWinnerPage), passedGames);
+        Shell.Current.GoToAsync(nameof(SelectWinnerPage), passedGames);
 
     }
 

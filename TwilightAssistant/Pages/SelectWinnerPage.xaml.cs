@@ -1,6 +1,6 @@
 using TwilightAssistant.ViewModels;
 
-namespace TwilightAssistant;
+namespace TwilightAssistant.Pages;
 
 public partial class SelectWinnerPage : ContentPage
 {
@@ -9,4 +9,6 @@ public partial class SelectWinnerPage : ContentPage
         BindingContext = swvm;
         InitializeComponent();
 	}
+
+    
 }
