@@ -11,6 +11,7 @@ using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
 using TwilightAssistant.Pages;
+using Microsoft.Maui.Storage;
 
 namespace TwilightAssistant.ViewModels
 {
@@ -104,7 +105,7 @@ namespace TwilightAssistant.ViewModels
             }
 
             //Write the GamePlayers list to cashe
-            gamePlayerServices.SaveOfflineData(GamePlayers);
+            gamePlayerServices.SaveOfflineData(GamePlayers, Path.Combine(FileSystem.Current.AppDataDirectory, "gameplayers.json"));
 
             //Shell navigate to the select race page
             await Shell.Current.GoToAsync(nameof(SelectRacePage));

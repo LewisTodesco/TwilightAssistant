@@ -92,7 +92,7 @@ namespace TwilightAssistant.ViewModels
             NameInput = "";
 
             //Update the AppDataDirectory json file to persist the PlayerProfiles.
-            playerProfileServices.SaveOfflineData(PlayerProfiles);
+            playerProfileServices.SaveOfflineData(PlayerProfiles, Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json"));
         }
 
         //Create a new Command for when a player profile from the CollectionView is tapped.
@@ -151,14 +151,17 @@ namespace TwilightAssistant.ViewModels
         public void UpdateMainPage(string targetFileProfiles, string targetFileGames)
         {
             PlayerProfiles = playerProfileServices.GetOfflineData(targetFileProfiles);
-            Games = gameServices.GetOfflineData(targetFileGames);
+            ObservableCollection<Game> allGames = gameServices.GetOfflineData(targetFileGames);
 
             ActiveGames = new ObservableCollection<Game>();
+            Games = new ObservableCollection<Game>();
             //Distinguish between active and finished games incase the app crashes, closes etc., or game is played over two sessions, and you want to continue.
-            foreach (Game game in Games)
+            foreach (Game game in allGames)
             {
                 if (game.IsActive)
                     ActiveGames.Add(game);
+                else
+                    Games.Add(game);
             }
         }
 

@@ -45,7 +45,7 @@ namespace TwilightAssistant.ViewModels
             //Instantiate the Services object
             gamePlayerServices = gps;
             //Call method to get GamePlayers
-            GamePlayers = gamePlayerServices.GetOfflineData(Path.Combine(FileSystem.Current.CacheDirectory, "gameplayers.json"));
+            GamePlayers = gamePlayerServices.GetOfflineData(Path.Combine(FileSystem.Current.AppDataDirectory, "gameplayers.json"));
             raceServices = races;
             Races = raceServices.GetRaces();
         }
@@ -76,7 +76,7 @@ namespace TwilightAssistant.ViewModels
             }
 
             //Update the GamePlayers JSON file in the cashe
-            gamePlayerServices.SaveOfflineData(GamePlayers);
+            gamePlayerServices.SaveOfflineData(GamePlayers, Path.Combine(FileSystem.Current.AppDataDirectory, "gameplayers.json"));
 
             //Navigate back
             await Shell.Current.GoToAsync(nameof(SelectRacePage));

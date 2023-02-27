@@ -32,7 +32,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Grid.Row="2" Command="{Binding GotoGamePageCommand}" Text="CREATE GAME"/>
+        <Button Grid.Row="2" Command="{Binding GotoGamePageCommand}" CommandParameter="{Binding AppDataDirectory}"  Text="CREATE GAME"/>
 
     </Grid>
     

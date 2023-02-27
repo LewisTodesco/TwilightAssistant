@@ -11,7 +11,7 @@ namespace TwilightAssistant.Services
     {
         public ObservableCollection<T> GetOfflineData(string targetFile);
         public ObservableCollection<T> GetOnlineData();
-        public void SaveOfflineData(ObservableCollection<T> collection_to_save);
+        public void SaveOfflineData(ObservableCollection<T> collection_to_save, string targetFile);
         public ObservableCollection<T> SaveOnlineData();
     }
 }

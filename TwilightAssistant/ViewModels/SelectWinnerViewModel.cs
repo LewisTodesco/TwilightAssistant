@@ -125,8 +125,8 @@ namespace TwilightAssistant.ViewModels
             //Put in place to stop tests overwriting the AppData JSON files and errors with Shell Navigation.
             if (PlayerProfiles[0].Id != "METHOD CALLED FROM TEST")
             {
-                playerProfileServices.SaveOfflineData(PlayerProfiles);
-                gameServices.SaveOfflineData(Games);
+                playerProfileServices.SaveOfflineData(PlayerProfiles, Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json"));
+                gameServices.SaveOfflineData(Games, Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
 
                 Dictionary<string, object> passedwinner = new Dictionary<string, object>
                 {

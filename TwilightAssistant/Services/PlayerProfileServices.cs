@@ -62,11 +62,9 @@ namespace TwilightAssistant.Services
             throw new NotImplementedException();
         }
 
-        public void SaveOfflineData(ObservableCollection<PlayerProfile> collection_to_save)
+        public void SaveOfflineData(ObservableCollection<PlayerProfile> collection_to_save, string targetFile)
         {
             var playerProfilesJson = JsonConvert.SerializeObject(collection_to_save);
-            string fileName = "playerprofiles.json";
-            string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
             File.WriteAllText(targetFile, playerProfilesJson);
         }
 

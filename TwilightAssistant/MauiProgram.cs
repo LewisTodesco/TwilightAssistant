@@ -24,6 +24,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<RaceServices>();
 		builder.Services.AddTransient<GameServices>();
 		builder.Services.AddTransient<StrategyCardServices>();
+		builder.Services.AddTransient<DialogueServices>();
 		
 
 		//Register View Models
@@ -33,7 +34,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<PlayerProfileViewModel>();
 		builder.Services.AddTransient<SelectPlayersViewModel>();
 		builder.Services.AddTransient<SelectRaceViewModel>();
-		builder.Services.AddSingleton<GetRaceViewModel>();
+		builder.Services.AddTransient<GetRaceViewModel>();
 		builder.Services.AddTransient<SelectWinnerViewModel>();
 		builder.Services.AddTransient<WinnerPageViewModel>();
 
@@ -44,7 +45,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<PlayerProfilePage>();
 		builder.Services.AddTransient<SelectPlayersPage>();
 		builder.Services.AddTransient<SelectRacePage>();
-		builder.Services.AddSingleton<GetRacePage>();
+		builder.Services.AddTransient<GetRacePage>();
 		builder.Services.AddTransient<GamePage3>();
 		builder.Services.AddTransient<SelectWinnerPage>();
 		builder.Services.AddTransient<WinnerPage>();
