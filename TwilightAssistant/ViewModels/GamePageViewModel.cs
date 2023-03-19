@@ -37,6 +37,8 @@ namespace TwilightAssistant.ViewModels
             }
         }
 
+        public ObservableCollection<Game> Games { get; set; }
+
         GameServices gameServices;
         public GamePageViewModel(GameServices gs)
         {
@@ -53,6 +55,8 @@ namespace TwilightAssistant.ViewModels
 
             //Use the Game.GamePlayers incase a game is loaded from memory.
             GamePlayers = ActiveGame.GamePlayers;
+
+            this.Games = Games;
 
         }
 

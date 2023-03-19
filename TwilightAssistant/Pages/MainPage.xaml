@@ -64,7 +64,8 @@
                 <DataTemplate x:DataType="Models:Game">
                     <Frame Padding="5" HeightRequest="70" Margin="5">
                         <Frame.GestureRecognizers>
-                            <TapGestureRecognizer>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ViewModels:MainPageViewModel}},Path=GotoActiveGameCommand}"
+                                                  CommandParameter="{Binding .}">
 
                             </TapGestureRecognizer>
                         </Frame.GestureRecognizers>

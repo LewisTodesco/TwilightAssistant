@@ -17,8 +17,8 @@ namespace TwilightAssistantTest
         void Player_Profiles_And_Games_Should_Be_Loaded_From_UpdateMainPage_Method()
         {
             //Arrange
-            PlayerProfileServices playerProfileServices= new PlayerProfileServices();
-            GameServices gameServices= new GameServices();
+            PlayerProfileServices playerProfileServices = new PlayerProfileServices();
+            GameServices gameServices = new GameServices();
 
             //Act
             MainPageViewModel mpvm = new MainPageViewModel(playerProfileServices, gameServices);
@@ -65,7 +65,7 @@ namespace TwilightAssistantTest
 
             //alter GamePlayer[0]'s id to indicate the method call is from a test. 
             gamePlayers[0].Id = "METHOD CALLED FROM TEST";
-            
+
             //Create dummy games
             ObservableCollection<Game> games = new ObservableCollection<Game> {
                 {new Game(gamePlayers) },
@@ -87,6 +87,14 @@ namespace TwilightAssistantTest
 
         }
 
+        //[Fact]
+        //void SelectingTheActiveGameWillTakeYouToGamePageToContinueTheGame()
+        //{ 
+            
+
+
+
+        //}
 
     }
 }

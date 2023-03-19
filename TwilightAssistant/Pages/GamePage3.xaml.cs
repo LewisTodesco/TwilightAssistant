@@ -51,6 +51,7 @@ public partial class GamePage3 : ContentPage
         BindingContext = gpvm; //Set the binding context to the view model so we can pull in our List<GamePlayer> GamePlayers.
 
         tickArray = gpvm.ActiveGame.TickArray;
+        Games = gpvm.Games;
 
         gameServices = gs;
 
@@ -203,8 +204,10 @@ public partial class GamePage3 : ContentPage
                     if (timer0.IsRunning)
                     {
                         timer0.Stop();
+                        playerFrame0.BorderColor = Colors.Gray;
                     }
-                    playerFrame0.BorderColor = Colors.Gray;
+                    else
+                        return;
                     break;
                 }
             case "StopBtn1":
@@ -212,8 +215,10 @@ public partial class GamePage3 : ContentPage
                     if (timer1.IsRunning)
                     {
                         timer1.Stop();
+                        playerFrame1.BorderColor = Colors.Gray;
                     }
-                    playerFrame1.BorderColor = Colors.Gray;
+                    else
+                        return;
                     break;
                 }
             case "StopBtn2":
@@ -221,15 +226,25 @@ public partial class GamePage3 : ContentPage
                     if (timer2.IsRunning)
                     {
                         timer2.Stop();
+                        playerFrame2.BorderColor = Colors.Gray;
                     }
-                    playerFrame2.BorderColor = Colors.Gray;
+                    else
+                        return;
                     break;
                 }
             default:
                 break;
         }
 
-
+        //Save the times of each player just incase app crashes/accidently closed etc.
+        for (int x = 0; x < Games.Count; x++)
+        {
+            if (Games[x].IsActive)
+            {
+                Games[x].TickArray = tickArray;
+            }
+        }
+        gameServices.SaveOfflineData(Games, Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
 
     }
 
@@ -241,8 +256,10 @@ public partial class GamePage3 : ContentPage
         timer0.Stop();
         timer1.Stop();
         timer2.Stop();
+        playerFrame0.BorderColor = Colors.Gray;
+        playerFrame1.BorderColor = Colors.Gray;
+        playerFrame2.BorderColor = Colors.Gray;
 
-        
         Games = gameServices.GetOfflineData(Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
         
 

@@ -9,4 +9,6 @@ public partial class GetRacePage : ContentPage
 		InitializeComponent();
 		BindingContext = grvm;
 	}
+
+  
 }

@@ -165,5 +165,39 @@ namespace TwilightAssistant.ViewModels
             }
         }
 
+        //Goto ActiveGame
+        private ICommand gotoActiveGameCommand;
+
+        public ICommand GotoActiveGameCommand => gotoActiveGameCommand ??= new Command(GotoActiveGame);
+
+        public async void GotoActiveGame(object tappedGame)
+        {
+
+            Game activeGame = (Game)tappedGame;
+            int playercount = activeGame.GamePlayers.Count;
+            switch (playercount)
+            {
+                case 3:
+                    await Shell.Current.GoToAsync(nameof(GamePage3));
+                    break;
+                case 4:
+                    //await Shell.Current.GoToAsync(nameof(GamePage4), passedGame);
+                    break;
+                case 5:
+                    //await Shell.Current.GoToAsync(nameof(GamePage5), passedGame);
+                    break;
+                case 6:
+                    //await Shell.Current.GoToAsync(nameof(GamePage6), passedGame);
+                    break;
+                case 7:
+                    //await Shell.Current.GoToAsync(nameof(GamePage7), passedGame);
+                    break;
+                case 8:
+                    await Shell.Current.GoToAsync(nameof(GamePage));
+                    break;
+            }
+
+        }
+
     }
 }
