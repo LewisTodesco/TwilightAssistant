@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
 
@@ -59,6 +60,19 @@ namespace TwilightAssistant.ViewModels
             this.Games = Games;
 
         }
+
+        ////Button to go home
+        //private ICommand homeCommand;
+        //public ICommand HomeCommand => homeCommand ??= new Command(Home);
+        //public void Home()
+        //{
+        //    var currentStack = Shell.Current.Navigation.NavigationStack;
+        //    MainThread.BeginInvokeOnMainThread(() =>
+        //        {
+        //            Shell.Current.Navigation.PopToRootAsync(true);
+        //        });
+            
+        //}
 
     }
 }

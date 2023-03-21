@@ -16,7 +16,7 @@ public partial class MainPage : ContentPage
 
     }
 
-    //This page needs to be updated when it appears as we will be going to and from selection screens to assign Races.
+    //This page needs to be updated when it appears for when the game ends
     protected override void OnAppearing()
     {
         base.OnAppearing();
@@ -26,6 +26,8 @@ public partial class MainPage : ContentPage
         mainPageViewModel.UpdateMainPage(Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json"), Path.Combine(FileSystem.Current.AppDataDirectory, "games.json"));
         //Initialize the page
         InitializeComponent();
+
+        var navigationStack = Shell.Current.Navigation.NavigationStack;
     }
 
 

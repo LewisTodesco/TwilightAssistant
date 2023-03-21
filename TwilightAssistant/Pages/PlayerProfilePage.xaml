@@ -8,9 +8,11 @@
              x:DataType="ViewModels:PlayerProfileViewModel">
 
     <Grid RowDefinitions="100,60,60,60,*" ColumnDefinitions="*,*" Padding="10">
-
+        
         <Label Text="{Binding Profile.Name}" Grid.Row="0" FontSize="38" CharacterSpacing="2" HorizontalTextAlignment="Center" Grid.ColumnSpan="2" VerticalTextAlignment="Center" TextTransform="Uppercase"/>
 
+        <Button Grid.Column="0" Grid.Row="0" WidthRequest="120" HorizontalOptions="Start" HeightRequest="60" Text="BACK" Command="{Binding BackCommand}"></Button>
+        
         <Label Text="GAMES PLAYED" Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="28"></Label>
         <Label Text="{Binding Profile.GamesPlayed}" Grid.Row="1" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="28"/>
 

@@ -7,11 +7,13 @@
              xmlns:models="clr-namespace:TwilightAssistant.Models"
              x:DataType="viewmodels:GamePageViewModel">
     
-    <Grid RowDefinitions="70,*,100,60" ColumnDefinitions="75*,25*">
+    <Grid RowDefinitions="70,*,100,60" ColumnDefinitions="20*,60*,20*">
         
-        <Label Text="TWILIGHT IMPERIUM" FontSize="50" CharacterSpacing="2" Grid.Row="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+        <Label Text="TWILIGHT IMPERIUM" FontSize="50" CharacterSpacing="2" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center"/>
 
-        <VerticalStackLayout Grid.Row="1" Spacing="10" Grid.ColumnSpan="2">
+        <Button Grid.Row="0" Grid.Column="0" Clicked="GoHome" Text="HOME" WidthRequest="120" HeightRequest="60"/>
+
+        <VerticalStackLayout Grid.Row="1" Spacing="10" Grid.ColumnSpan="3">
             <Frame Margin="5" x:Name="playerFrame0">
                 <Grid ColumnDefinitions="*,*,*,*,*,Auto,Auto">
                     <Label Text="{Binding ActiveGame.GamePlayers[0].Name}" Grid.Column="0" FontSize="30" HorizontalOptions="Start" VerticalTextAlignment="Center" TextTransform="Uppercase"></Label>
@@ -48,7 +50,7 @@
         </VerticalStackLayout>
 
 
-        <Button Grid.Row="3" Grid.Column="1" Clicked="EndGame" Text="END GAME" CharacterSpacing="2" HorizontalOptions="Center"></Button>
+        <Button Grid.Row="3" Grid.Column="2" Clicked="EndGame" Text="END GAME" CharacterSpacing="2" HorizontalOptions="Center"></Button>
        
     </Grid>
 </ContentPage>

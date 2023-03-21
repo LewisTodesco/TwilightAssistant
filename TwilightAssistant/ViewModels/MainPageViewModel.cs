@@ -23,8 +23,9 @@ namespace TwilightAssistant.ViewModels
 
         PlayerProfileServices playerProfileServices;
         GameServices gameServices;
+        DialogueServices dialogueServices;
         //Constructor to do dependancy injection of the PlayerProfileServices and GameServices
-        public MainPageViewModel(PlayerProfileServices pps, GameServices gs)
+        public MainPageViewModel(PlayerProfileServices pps, GameServices gs, DialogueServices ds)
         {
             //Use the PlayerProfile services to get the playerprofiles from memory
             playerProfileServices = pps;
@@ -35,6 +36,7 @@ namespace TwilightAssistant.ViewModels
 
             //Use the Game services to get the games from memory.
             gameServices = gs;
+            dialogueServices = ds;   
 
             /*
             Games = gameServices.GetOfflineData();
@@ -118,6 +120,15 @@ namespace TwilightAssistant.ViewModels
 
         public async void GotoCreateGame()
         {
+            if (activeGames.Count != 0)
+            {
+                var answer = await dialogueServices.DisplayYesNo("Overwrite Game?", "Warning: When you finish creating a new game, the active game will be overwritten. Do you want to continue?", "Yes", "No");
+                if (!answer)
+                {
+                    return;
+                }
+            }
+             
             IDictionary<string, object> passedProfiles = new Dictionary<string, object>();
             passedProfiles.Add("PlayerProfiles", PlayerProfiles);
             await Shell.Current.GoToAsync(nameof(SelectPlayersPage), true, passedProfiles);

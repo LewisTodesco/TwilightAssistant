@@ -12,6 +12,7 @@ public partial class WinnerPage : ContentPage
 		InitializeComponent();
 	}
 
+	//Needed due to a bug with the poptorootasync navigation method.
 	private async void GoHome(object sender, EventArgs e)
 	{
         while (Navigation.NavigationStack.Count > 1)

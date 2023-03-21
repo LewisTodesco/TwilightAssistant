@@ -170,5 +170,14 @@ namespace TwilightAssistant.ViewModels
             }
         }
 
+        //For a back button in case it was missclicked.
+        private ICommand backCommand;
+        public ICommand BackCommand => backCommand ??= new Command(Back);
+
+        public async void Back()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
     }
 }

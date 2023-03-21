@@ -8,12 +8,16 @@
              x:DataType="viewmodels:SelectRaceViewModel">
     
     
-    <Grid RowDefinitions="50,*,50">
-        <Label Grid.Row="0" Text="SELECT RACES" FontSize="28" CharacterSpacing="2"/>
+    <Grid RowDefinitions="50,*,50" ColumnDefinitions="10*,90*">
+        
+        <Label Grid.Row="0" Text="SELECT RACES" FontSize="28" CharacterSpacing="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+
+        <Button Grid.Row="0" Text="BACK" Grid.Column="0" Command="{Binding BackCommand}"/>
 
         <CollectionView ItemsSource="{Binding GamePlayers}"
                         SelectionMode="Single"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:GamePlayer">
                     <Frame Padding="10" Margin="10" HeightRequest="60">
@@ -32,7 +36,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Grid.Row="2" Command="{Binding GotoGamePageCommand}" CommandParameter="{Binding AppDataDirectory}"  Text="CREATE GAME"/>
+        <Button Grid.Row="2" Command="{Binding GotoGamePageCommand}" CommandParameter="{Binding AppDataDirectory}"  Text="CREATE GAME" Grid.ColumnSpan="2"/>
 
     </Grid>
     

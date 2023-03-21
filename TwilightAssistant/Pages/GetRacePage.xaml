@@ -8,12 +8,16 @@
              x:DataType="viewmodels:GetRaceViewModel">
     
     
-    <Grid RowDefinitions="50,*,50">
-        <Label Grid.Row="0" Text="SELECT RACE" FontSize="28" CharacterSpacing="2"/>
+    <Grid RowDefinitions="50,*" ColumnDefinitions="10*,90*">
+        
+        <Label Grid.Row="0" Text="SELECT RACE" FontSize="28" CharacterSpacing="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+
+        <Button Grid.Row="0" Grid.Column="0" Text="BACK" Command="{Binding BackCommand}"/>
 
         <CollectionView ItemsSource="{Binding Races}"
                         SelectionMode="Single"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:Race">
                     <Frame Padding="10" Margin="10" HeightRequest="60">
@@ -30,8 +34,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <Button Grid.Row="2"/>
 
     </Grid>
     

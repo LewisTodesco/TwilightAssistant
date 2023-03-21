@@ -13,6 +13,11 @@ namespace TwilightAssistant.Services
             await Application.Current.MainPage.DisplayAlert(title, message, accept);
         }
 
+        public async Task<bool> DisplayYesNo(string title, string message, string yes, string no)
+        {
+            return await Application.Current.MainPage.DisplayAlert(title, message, yes, no);
+        }
+
 
     }
 }

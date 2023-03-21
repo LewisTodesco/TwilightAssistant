@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
 
@@ -46,6 +47,15 @@ namespace TwilightAssistant.ViewModels
         public PlayerProfileViewModel()
         { 
             
+        }
+
+        //For a back button in case it was missclicked.
+        private ICommand backCommand;
+        public ICommand BackCommand => backCommand ??= new Command(Back);
+
+        public async void Back()
+        {
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

@@ -8,12 +8,16 @@
              x:DataType="viewmodels:SelectPlayersViewModel">
     
     
-    <Grid RowDefinitions="50,*,50">
-        <Label Grid.Row="0" Text="SELECT PLAYERS" FontSize="28" CharacterSpacing="2"/>
+    <Grid RowDefinitions="50,*,50" ColumnDefinitions="10*,90*">
+        
+        <Label Grid.Row="0" Text="SELECT PLAYERS" FontSize="28" CharacterSpacing="2" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+
+        <Button Grid.Row="0" Text="BACK" Grid.Column="0" Command="{Binding BackCommand}"/>
 
         <CollectionView ItemsSource="{Binding PlayerProfiles}"
                         SelectionMode="Multiple"
-                        Grid.Row="1">
+                        Grid.Row="1"
+                        Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:PlayerProfile">
                     <Frame Padding="10" Margin="10" HeightRequest="60">
@@ -22,16 +26,17 @@
                                                   CommandParameter="{Binding .}">
                             </TapGestureRecognizer>
                         </Frame.GestureRecognizers>
-                        <Grid ColumnDefinitions="*,*">
+                        <Grid ColumnDefinitions="50*,20*,30*">
                             <Label Grid.Column="0" Text="{Binding Name}" FontSize="28" HorizontalTextAlignment="Center"/>
-                            <Image Grid.Column="1" Source="{Binding LastRacePlayed}" HeightRequest="50" Aspect="AspectFit"/>
+                            <Label Grid.Column="1" Text="Last Played:" FontSize="16" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            <Image Grid.Column="2" Source="{Binding LastRacePlayed}" HeightRequest="50" Aspect="AspectFit" HorizontalOptions="Start"/>
                         </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Button Grid.Row="2" Text="CONFIRM PLAYERS" Command="{Binding GotoSelectRaceCommand}"/>
+        <Button Grid.Row="2" Text="CONFIRM PLAYERS" Command="{Binding GotoSelectRaceCommand}" Grid.ColumnSpan="2"/>
 
     </Grid>
     

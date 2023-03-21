@@ -5,6 +5,7 @@ using TwilightAssistant.ViewModels;
 using TwilightAssistant.Services;
 using Microsoft.Maui.Graphics;
 using System.Security;
+using Microsoft.Maui.Dispatching;
 
 namespace TwilightAssistant.Pages;
 
@@ -45,7 +46,8 @@ public partial class GamePage3 : ContentPage
     public Game ActiveGame { get; set; }
 
     GameServices gameServices;
-    public GamePage3(GamePageViewModel gpvm, GameServices gs)
+    IDispatcher dispatcherProvider;
+    public GamePage3(GamePageViewModel gpvm, GameServices gs, IDispatcher dispatcher)
     {
         //ViewModel
         BindingContext = gpvm; //Set the binding context to the view model so we can pull in our List<GamePlayer> GamePlayers.
@@ -54,6 +56,8 @@ public partial class GamePage3 : ContentPage
         Games = gpvm.Games;
 
         gameServices = gs;
+
+        dispatcherProvider = dispatcher;
 
         //Initialize
         InitializeComponent();
@@ -341,4 +345,15 @@ public partial class GamePage3 : ContentPage
         else
             return "OUT OF RANGE";
     }
+
+    private async void GoHome(object sender, EventArgs e)
+    {
+        while (Navigation.NavigationStack.Count > 1)
+        {
+            Navigation.RemovePage(Navigation.NavigationStack[1]);
+        }
+
+        await dispatcherProvider.DispatchAsync(() => Shell.Current.GoToAsync(".."));
+    }
+
 }
