@@ -19,9 +19,10 @@ namespace TwilightAssistantTest
             //Arrange
             PlayerProfileServices playerProfileServices = new PlayerProfileServices();
             GameServices gameServices = new GameServices();
+            DialogueServices dialogueServices = new DialogueServices();
 
             //Act
-            MainPageViewModel mpvm = new MainPageViewModel(playerProfileServices, gameServices);
+            MainPageViewModel mpvm = new MainPageViewModel(playerProfileServices, gameServices, dialogueServices);
             mpvm.UpdateMainPage("C:\\Users\\lewis\\source\\repos\\TwilightAssistant\\TwilightAssistantTest\\JsonTestFiles\\playerprofiles.json", "C:\\Users\\lewis\\source\\repos\\TwilightAssistant\\TwilightAssistantTest\\JsonTestFiles\\games.json");
 
             //Assert
@@ -35,6 +36,7 @@ namespace TwilightAssistantTest
             //Arrange
             PlayerProfileServices playerProfileServices = new PlayerProfileServices();
             GameServices gameServices = new GameServices();
+            DialogueServices dialogueServices = new DialogueServices();
 
             //Create dummy playerprofiles
             ObservableCollection<PlayerProfile> playerProfiles = new ObservableCollection<PlayerProfile> {
@@ -78,7 +80,7 @@ namespace TwilightAssistantTest
             gameServices.SaveOfflineData(games, "C:\\Users\\lewis\\source\\repos\\TwilightAssistant\\TwilightAssistantTest\\JsonTestFiles\\games.json");
 
             //Act
-            MainPageViewModel mpvm = new MainPageViewModel(playerProfileServices, gameServices);
+            MainPageViewModel mpvm = new MainPageViewModel(playerProfileServices, gameServices, dialogueServices);
             mpvm.UpdateMainPage("C:\\Users\\lewis\\source\\repos\\TwilightAssistant\\TwilightAssistantTest\\JsonTestFiles\\playerprofiles.json", "C:\\Users\\lewis\\source\\repos\\TwilightAssistant\\TwilightAssistantTest\\JsonTestFiles\\games.json");
 
             //Assert

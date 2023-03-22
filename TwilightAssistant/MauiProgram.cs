@@ -28,7 +28,7 @@ public static class MauiProgram
 		
 
 		//Register View Models
-		builder.Services.AddSingleton<TimingTestViewModel>();
+		//builder.Services.AddSingleton<TimingTestViewModel>();
 		builder.Services.AddTransient<MainPageViewModel>();
 		builder.Services.AddTransient<GamePageViewModel>();
 		builder.Services.AddTransient<PlayerProfileViewModel>();
@@ -49,6 +49,7 @@ public static class MauiProgram
 		builder.Services.AddTransient<GamePage3>();
 		builder.Services.AddTransient<SelectWinnerPage>();
 		builder.Services.AddTransient<WinnerPage>();
+		builder.Services.AddTransient<GamePage6>();
 
 		//Build
 		return builder.Build();

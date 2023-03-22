@@ -152,16 +152,16 @@ namespace TwilightAssistant.ViewModels
                         await Shell.Current.GoToAsync(nameof(GamePage3));
                         break;
                     case 4:
-                        //await Shell.Current.GoToAsync(nameof(GamePage4), passedGame);
+                        //await Shell.Current.GoToAsync(nameof(GamePage4));
                         break;
                     case 5:
-                        //await Shell.Current.GoToAsync(nameof(GamePage5), passedGame);
+                        //await Shell.Current.GoToAsync(nameof(GamePage5));
                         break;
                     case 6:
-                        //await Shell.Current.GoToAsync(nameof(GamePage6), passedGame);
+                        await Shell.Current.GoToAsync(nameof(GamePage6));
                         break;
                     case 7:
-                        //await Shell.Current.GoToAsync(nameof(GamePage7), passedGame);
+                        //await Shell.Current.GoToAsync(nameof(GamePage7));
                         break;
                     case 8:
                         await Shell.Current.GoToAsync(nameof(GamePage));

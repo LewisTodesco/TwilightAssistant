@@ -47,9 +47,11 @@ namespace TwilightAssistant.ViewModels
         }
 
         GamePlayerServices gamePlayerServices;
-        public SelectPlayersViewModel(GamePlayerServices gps)
+        DialogueServices dialogueServices;
+        public SelectPlayersViewModel(GamePlayerServices gps, DialogueServices ds)
         {
             gamePlayerServices = gps;
+            dialogueServices = ds;
         }
 
         //Create an ObservableCollection to store the selected profiles.
@@ -89,9 +91,28 @@ namespace TwilightAssistant.ViewModels
         public async void GotoSelectRace()
         {
             //If no profiles are selected, we dont want the button to do anything.
-            if (SelectedProfiles.Count == 0 || SelectedProfiles.Count == 1 || SelectedProfiles.Count == 2)
-                //ADD A POP UP HERE TO SELECT AT LEAST 3 PLAYERS
+            if (SelectedProfiles.Count == 0 || SelectedProfiles.Count == 1 || SelectedProfiles.Count == 2 || SelectedProfiles.Count > 8)
+            {
+                await dialogueServices.DisplayAlert("Invalid player count", $"Player count must be between 3-8. {SelectedProfiles.Count} players currently selected.", "OK");
                 return;
+            }
+
+            int playercount = SelectedProfiles.Count;
+            switch (playercount)
+            {
+                case 4:
+                    await dialogueServices.DisplayAlert("Game not supported", $"{playercount} Player game is not supported yet.", "OK");
+                    return;
+                case 5:
+                    await dialogueServices.DisplayAlert("Game not supported", $"{playercount} Player game is not supported yet.", "OK");
+                    return;
+                case 7:
+                    await dialogueServices.DisplayAlert("Game not supported", $"{playercount} Player game is not supported yet.", "OK");
+                    return;
+                case 8:
+                    await dialogueServices.DisplayAlert("Game not supported", $"{playercount} Player game is not supported yet.", "OK");
+                    return;
+            }
 
             GamePlayers = new ObservableCollection<GamePlayer>();
 
