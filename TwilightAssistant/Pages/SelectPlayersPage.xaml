@@ -20,7 +20,7 @@
                         Grid.ColumnSpan="2">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:PlayerProfile">
-                    <Frame Padding="10" Margin="10" HeightRequest="60">
+                    <Frame Padding="10" HeightRequest="60">
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SelectPlayersViewModel}}, Path=SelectedPlayersCommand}"
                                                   CommandParameter="{Binding .}">
@@ -31,6 +31,16 @@
                             <Label Grid.Column="1" Text="Last Played:" FontSize="16" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                             <Image Grid.Column="2" Source="{Binding LastRacePlayed}" HeightRequest="50" Aspect="AspectFit" HorizontalOptions="Start"/>
                         </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"></VisualState>
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="#003366"></Setter>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

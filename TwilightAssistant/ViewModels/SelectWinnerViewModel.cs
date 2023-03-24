@@ -121,6 +121,8 @@ namespace TwilightAssistant.ViewModels
 
             //De-activate the game so it doesnt get overwritten
             Games[Index].IsActive = false;
+            //Set the winning player colour so the main screen can show who won
+            Games[Index].GamePlayers[Games[Index].GamePlayers.IndexOf(winningPlayer)].WinColour = Colors.Green;
 
             //Put in place to stop tests overwriting the AppData JSON files and errors with Shell Navigation.
             if (PlayerProfiles[0].Id != "METHOD CALLED FROM TEST")

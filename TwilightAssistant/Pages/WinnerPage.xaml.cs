@@ -7,7 +7,7 @@ public partial class WinnerPage : ContentPage
 	private readonly IDispatcher dispatcherProvider;
 	public WinnerPage(WinnerPageViewModel wpvm, IDispatcher dispatcher)
 	{
-				BindingContext= wpvm;
+		BindingContext= wpvm;
 		dispatcherProvider = dispatcher;
 		InitializeComponent();
 	}

@@ -80,7 +80,7 @@ namespace TwilightAssistant.ViewModels
                 }
             }
         }        
-
+        
 
         //Create an ObservableCollection to store GamePlayer objects from the selected profiles.
         public ObservableCollection<GamePlayer> GamePlayers { get; set; }

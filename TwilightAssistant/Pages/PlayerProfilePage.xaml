@@ -20,7 +20,7 @@
         <Label Text="{Binding Profile.Wins}" Grid.Row="2" Grid.Column="1" HorizontalTextAlignment="Center" FontSize="28"/>
         
         <Label Text="GAME HISTORY" Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" FontSize="28" Grid.ColumnSpan="2"></Label>
-        <CollectionView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Profile.GameHistory}">
+        <CollectionView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Profile.GameHistoryDisplay}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="Models:GameStats">
                     <Frame Padding="10" HeightRequest="70" BorderColor="{Binding WinLossColour}" Margin="8">

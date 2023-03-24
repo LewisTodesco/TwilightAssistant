@@ -12,6 +12,7 @@ using System.Windows.Input;
 using TwilightAssistant.Models;
 using TwilightAssistant.Services;
 using TwilightAssistant.Pages;
+using Microsoft.Maui.Controls;
 
 namespace TwilightAssistant.ViewModels
 {
@@ -176,6 +177,11 @@ namespace TwilightAssistant.ViewModels
 
         public async void Back()
         {
+            var stack = Shell.Current.Navigation.NavigationStack;
+            while (Shell.Current.Navigation.NavigationStack.Count > 3)
+            {
+                Shell.Current.Navigation.RemovePage(Shell.Current.Navigation.NavigationStack[3]);
+            }
             await Shell.Current.GoToAsync("..");
         }
 

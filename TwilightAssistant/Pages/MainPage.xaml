@@ -100,11 +100,11 @@
                         </Frame.GestureRecognizers>
                         <Grid ColumnDefinitions="90,*">
                             <Label Text="{Binding GameDate}" HorizontalOptions="Center" VerticalOptions="Center"></Label>
-                            <CollectionView ItemsLayout="HorizontalList" Grid.Column="1" ItemsSource="{Binding GamePlayers}" >
+                            <CollectionView ItemsLayout="HorizontalList" Grid.Column="1" ItemsSource="{Binding GamePlayers}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate x:DataType="Models:GamePlayer">
-                                        <Frame Padding="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BorderColor="Black" WidthRequest="80">
-                                            <Label Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18"></Label>
+                                        <Frame Padding="5" HorizontalOptions="Center" VerticalOptions="Center" Margin="10" BorderColor="Black" WidthRequest="300">
+                                            <Label Text="{Binding Name}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="18" TextColor="{Binding WinColour}"></Label>
                                         </Frame>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>

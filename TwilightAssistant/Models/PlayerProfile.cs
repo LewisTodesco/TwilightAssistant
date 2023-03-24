@@ -47,6 +47,21 @@ namespace TwilightAssistant.Models
 
         public ObservableCollection<GameStats> GameHistory { get; set; } //Keep a list of Games played (GameStats object holds simple info)
 
+        
+        public ObservableCollection<GameStats> GameHistoryDisplay {
+
+            get
+            {
+                ObservableCollection<GameStats> gameHistoryDisplay = new ObservableCollection<GameStats>();
+                for (int i = GameHistory.Count - 1; i >= 0; i--)
+                {
+                    gameHistoryDisplay.Add(GameHistory[i]);
+                }
+                return gameHistoryDisplay;
+            }
+        } //Needed to create this observable collection to display the games in reverse order.
+
+
         public PlayerProfile(string name) //Pass a string name to Name the PlayerProfile, create a new Guid.
         { 
             Name = name;

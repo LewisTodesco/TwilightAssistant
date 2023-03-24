@@ -167,13 +167,15 @@ namespace TwilightAssistant.ViewModels
             ActiveGames = new ObservableCollection<Game>();
             Games = new ObservableCollection<Game>();
             //Distinguish between active and finished games incase the app crashes, closes etc., or game is played over two sessions, and you want to continue.
-            foreach (Game game in allGames)
+            for (int i = allGames.Count - 1; i>=0; i--)
             {
+                Game game = allGames[i];
                 if (game.IsActive)
                     ActiveGames.Add(game);
                 else
                     Games.Add(game);
             }
+
         }
 
         //Goto ActiveGame
