@@ -43,7 +43,7 @@ namespace TwilightAssistant.Models
             }
             //set { } - Doesnt need to be settable as the property depends on the List of GameStats.
         }
-        public bool Exists { get; set; } //Needed to stop new Ids being created everytime the object is substantiated.
+        public bool Exists { get; set; } //Needed to stop new Ids being created everytime the object is instantiated.
 
         public ObservableCollection<GameStats> GameHistory { get; set; } //Keep a list of Games played (GameStats object holds simple info)
 
@@ -66,10 +66,10 @@ namespace TwilightAssistant.Models
         { 
             Name = name;
             GameHistory = new ObservableCollection<GameStats>();
-            if (!Exists) //Only create a new Id when its a new object.
+            //if (!Exists) //Only create a new Id when its a new object.
             {
                 Id = Guid.NewGuid().ToString();
-                Exists = true;
+                //Exists = true;
             }
         }
 

@@ -51,7 +51,7 @@ namespace TwilightAssistant.Services
             }
         }
 
-        public ObservableCollection<GamePlayer> GetOnlineData()
+        public Task<ObservableCollection<GamePlayer>> GetOnlineData()
         {
             throw new NotImplementedException();
         }
@@ -64,7 +64,7 @@ namespace TwilightAssistant.Services
             File.WriteAllText(targetFile, gameplayersjson);
         }
 
-        public ObservableCollection<GamePlayer> SaveOnlineData()
+        public Task<ObservableCollection<GamePlayer>> SaveOnlineData(object passedGamePlayer)
         {
             throw new NotImplementedException();
         }

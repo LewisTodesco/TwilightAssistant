@@ -30,25 +30,11 @@ namespace TwilightAssistant.ViewModels
             //Use the PlayerProfile services to get the playerprofiles from memory
             playerProfileServices = pps;
 
-            /*
-            PlayerProfiles = playerProfileServices.GetOfflineData();
-            */
-
             //Use the Game services to get the games from memory.
             gameServices = gs;
+
+            //Use the Dialogue services for popups
             dialogueServices = ds;   
-
-            /*
-            Games = gameServices.GetOfflineData();
-
-            ActiveGames = new ObservableCollection<Game>();
-            //Distinguish between active and finished games incase the app crashes, closes etc., or game is played over two sessions, and you want to continue.
-            foreach (Game game in Games)
-            {
-                if (game.IsActive)
-                    ActiveGames.Add(game);
-            }
-            */
 
         }
 
@@ -86,7 +72,7 @@ namespace TwilightAssistant.ViewModels
         //Create an ICommand property that gets the addPlayerCommand field. If the addPlayerCommand property is null (??=) create a new Command with the Action AddPlayer()
         public ICommand AddPlayerCommand => addPlayerCommand ??= new Command(AddPlayer);
         //Method to run when the AddPlayerCommand button is pressed. Use the Name from the input box to create a new PlayerProfile object and add it to the observable collection.
-        public void AddPlayer()
+        public async void AddPlayer()
         {
             PlayerProfile newProfile = new PlayerProfile(NameInput);
             PlayerProfiles.Add(newProfile);
@@ -95,6 +81,12 @@ namespace TwilightAssistant.ViewModels
 
             //Update the AppDataDirectory json file to persist the PlayerProfiles.
             playerProfileServices.SaveOfflineData(PlayerProfiles, Path.Combine(FileSystem.Current.AppDataDirectory, "playerprofiles.json"));
+            
+            //Process below works and will update the Db using the TwilightAssistantAPI. However, due to UI issues, sticking with Offline approach for now.
+            /*
+            Task<ObservableCollection<PlayerProfile>> savetoDB = playerProfileServices.SaveOnlineData(newProfile);
+            PlayerProfiles = await savetoDB;
+            */
         }
 
         //Create a new Command for when a player profile from the CollectionView is tapped.
@@ -159,7 +151,7 @@ namespace TwilightAssistant.ViewModels
         }
 
         //Load all data when the page appears.
-        public void UpdateMainPage(string targetFileProfiles, string targetFileGames)
+        public async void UpdateMainPage(string targetFileProfiles, string targetFileGames)
         {
             PlayerProfiles = playerProfileServices.GetOfflineData(targetFileProfiles);
             ObservableCollection<Game> allGames = gameServices.GetOfflineData(targetFileGames);
@@ -176,6 +168,12 @@ namespace TwilightAssistant.ViewModels
                     Games.Add(game);
             }
 
+            //Process below works but the UI will not update with the list of player profiles without navigating away and back to main page.
+            //Commented out until fixed, therefore will be utilising Offline services only.
+            /*
+            Task<ObservableCollection<PlayerProfile>> databaseProfiles = playerProfileServices.GetOnlineData();
+            PlayerProfiles = await databaseProfiles;
+            */
         }
 
         //Goto ActiveGame

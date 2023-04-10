@@ -10,8 +10,8 @@ namespace TwilightAssistant.Services
     public interface IGetSaveServices<T>
     {
         public ObservableCollection<T> GetOfflineData(string targetFile);
-        public ObservableCollection<T> GetOnlineData();
+        public Task<ObservableCollection<T>> GetOnlineData();
         public void SaveOfflineData(ObservableCollection<T> collection_to_save, string targetFile);
-        public ObservableCollection<T> SaveOnlineData();
+        public Task<ObservableCollection<T>> SaveOnlineData(object T);
     }
 }
